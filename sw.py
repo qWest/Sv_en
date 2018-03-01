@@ -29,28 +29,14 @@ def sw_conf(sw_telnet,sw_inv):
     sw_output = sw_telnet.read_until(bytes(sw_inv, "utf8")).decode('utf-8')
     print(sw_output)
 
-ip_net = '172.16.23.'
 
-for i in range(254):
-    try:
-        telnet = telnetlib.Telnet(ip_net+str(i+1),23,5)
-        inv = sw_login(telnet)
-    except:
-        print('Error'+str(i+1))
-        continue
-    sw_conf(telnet,inv)
-    print(inv+' + '+str(i+1))
-    telnet.close()
-#telnet = telnetlib.Telnet(ip)
-#inv = sw_login(telnet)
-#print(inv)
-#sw_model(telnet,inv)
-#telnet.write(b'conf t\n')
-#telnet.write(b'hostname 1124_Gidgrostr_26_2#1\n')
-#telnet.write(b'show mac add\n')
-#time.sleep(0.5)
-#telnet.write(b'a')
-#time.sleep(2)
-#all_result = telnet.read_until(bytes(inv,"utf8")).decode('utf-8')
-#print(all_result)
-#telnet.close()
+#for i in range(254):
+#    try:
+#        telnet = telnetlib.Telnet(ip_net+str(i+1),23,5)
+#        inv = sw_login(telnet)
+#    except:
+#        print('Error'+str(i+1))
+#        continue
+#    sw_conf(telnet,inv)
+#    print(inv+' + '+str(i+1))
+#    telnet.close()
