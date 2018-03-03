@@ -10,7 +10,7 @@ import time
 
 bot = telebot.TeleBot(config.token)
 
-@bot.message_handler(regexp='^/vlan_info')
+@bot.message_handler(regexp='^/infovlan')
 def info_o_vlan_sw(message):
     if message.chat.id in config.good_ids:
         bot.send_message(message.chat.id, 'ОПА!')
@@ -50,10 +50,10 @@ def chandge_vlan(message):
             sw_output = telnet.read_until(bytes(inv, "utf8")).decode('utf-8')
             print(sw_output)
             telnet.close()
-            bot.send_message(message.chat.id, 'Готово!')
+            bot.send_message(message.chat.id, 'Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Рубиком')
 
         else:
-            bot.send_message(message.chat.id, 'фигню пишешь.')
+            bot.send_message(message.chat.id, 'Некорректный ввод данных')
         bot.send_message(config.owner_id, str(message.from_user.id)+'\n'+str(message.text))
 
 @bot.message_handler(regexp='^/aksvlan')
@@ -90,10 +90,10 @@ def chandge_vlan(message):
             sw_output = telnet.read_until(bytes(inv, "utf8")).decode('utf-8')
             print(sw_output)
             telnet.close()
-            bot.send_message(message.chat.id, 'Готово!')
+            bot.send_message(message.chat.id, 'Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Аксиому')
 
         else:
-            bot.send_message(message.chat.id, 'фигню пишешь.')
+            bot.send_message(message.chat.id, 'Некорректный ввод данных')
         bot.send_message(config.owner_id, str(message.from_user.id)+'\n'+str(message.from_user.first_name)+' '+str(message.from_user.last_name)+'\n'+str(message.text))
 
 
