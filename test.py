@@ -22,7 +22,7 @@ def chandge_vlan(message):
         split_cmd = message.text.split()
         print(split_cmd)
         if len(split_cmd)==3 and split_cmd[1] in config.good_sw_ud and split_cmd[2] in config.good_sw_port:
-            bot.send_message(message.chat.id,'Переключаю VLAN')
+            fst_msg = bot.send_message(message.chat.id,'Переключаю VLAN')
             try:
                 telnet = telnetlib.Telnet(split_cmd[1], 23, 5)
             except:
@@ -50,7 +50,8 @@ def chandge_vlan(message):
             sw_output = telnet.read_until(bytes(inv, "utf8")).decode('utf-8')
             print(sw_output)
             telnet.close()
-            bot.send_message(message.chat.id, 'Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Рубиком')
+            bot.edit_message_text('Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Рубиком', fst_msg.chat.id, fst_msg.message_id)
+            #bot.send_message(message.chat.id, 'Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Рубиком')
 
         else:
             bot.send_message(message.chat.id, 'Некорректный ввод данных')
@@ -62,7 +63,7 @@ def chandge_vlan(message):
         split_cmd = message.text.split()
         print(split_cmd)
         if len(split_cmd)==3 and split_cmd[1] in config.good_sw_ud and split_cmd[2] in config.good_sw_port:
-            bot.send_message(message.chat.id,'Переключаю VLAN')
+            fst_msg = bot.send_message(message.chat.id,'Переключаю VLAN')
             try:
                 telnet = telnetlib.Telnet(split_cmd[1], 23, 5)
             except:
@@ -90,7 +91,8 @@ def chandge_vlan(message):
             sw_output = telnet.read_until(bytes(inv, "utf8")).decode('utf-8')
             print(sw_output)
             telnet.close()
-            bot.send_message(message.chat.id, 'Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Аксиому')
+            bot.edit_message_text('Готово!\nКоммутатор ' + inv + '\nIP ' + split_cmd[1] + '\nПорт ' + split_cmd[2] + '\nПереключен на Аксиому', fst_msg.chat.id, fst_msg.message_id)
+            #bot.send_message(message.chat.id, 'Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Аксиому')
 
         else:
             bot.send_message(message.chat.id, 'Некорректный ввод данных')
