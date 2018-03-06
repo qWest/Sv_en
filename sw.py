@@ -3,7 +3,7 @@ import time
 
 def sw_login(sw_telnet):
     sw_telnet.write(b'admin\n')
-    sw_telnet.write(b'cvvi0mkl\ns')
+    sw_telnet.write(b'xxx')
     time.sleep(1)
     sw_output = sw_telnet.read_very_eager().decode('utf-8').split('\n')
     sw_inv = sw_output[len(sw_output) - 1]
