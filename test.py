@@ -16,7 +16,7 @@ def info_o_vlan_sw(message):
         bot.send_message(message.chat.id, 'ОПА!')
 
 
-@bot.message_handler(regexp='^/rubvlan')
+@bot.message_handler(regexp='^/rubvlan ')
 def chandge_vlan(message):
     if message.chat.id in config.good_ids:
         split_cmd = message.text.split()
@@ -52,12 +52,13 @@ def chandge_vlan(message):
             telnet.close()
             bot.edit_message_text('Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Рубиком', fst_msg.chat.id, fst_msg.message_id)
             #bot.send_message(message.chat.id, 'Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Рубиком')
-
-        else:
-            bot.send_message(message.chat.id, 'Некорректный ввод данных')
+        elif len(split_cmd) == 1:
+            bot.send_message(message.chat.id,'Введите команду в формате /rubvlan <IP адрес коммутатора> <номер порта абонента>')
+            else:
+                bot.send_message(message.chat.id, 'Некорректный ввод данных')
         bot.send_message(config.owner_id, str(message.from_user.id)+'\n'+str(message.text))
 
-@bot.message_handler(regexp='^/aksvlan')
+@bot.message_handler(regexp='^/aksvlan ')
 def chandge_vlan(message):
     if message.chat.id in config.good_ids:
         split_cmd = message.text.split()
@@ -93,9 +94,10 @@ def chandge_vlan(message):
             telnet.close()
             bot.edit_message_text('Готово!\nКоммутатор ' + inv + '\nIP ' + split_cmd[1] + '\nПорт ' + split_cmd[2] + '\nПереключен на Аксиому', fst_msg.chat.id, fst_msg.message_id)
             #bot.send_message(message.chat.id, 'Готово!\nКоммутатор '+inv+'\nIP '+split_cmd[1]+'\nПорт '+split_cmd[2]+'\nПереключен на Аксиому')
-
-        else:
-            bot.send_message(message.chat.id, 'Некорректный ввод данных')
+        elif len(split_cmd) == 1:
+            bot.send_message(message.chat.id, 'Введите команду в формате /aksvlan <IP адрес коммутатора> <номер порта абонента>')
+            else:
+                bot.send_message(message.chat.id, 'Некорректный ввод данных')
         bot.send_message(config.owner_id, str(message.from_user.id)+'\n'+str(message.from_user.first_name)+' '+str(message.from_user.last_name)+'\n'+str(message.text))
 
 
